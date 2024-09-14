@@ -48,14 +48,13 @@ class NavigationBarImpl(
     }
 
     override fun backgroundColor(color: Color) {
-        val x = ColorUtils.calculateLuminance(color.toArgb())
         windowInsetsControllerCompat.isAppearanceLightNavigationBars = color.luminance() > 0.5f
-        window.statusBarColor = color.toArgb()
+        window.navigationBarColor = color.toArgb()
     }
 
     override fun backgroundColorTransparent(colorRef: Color, contrastEnforced: Boolean) {
         windowInsetsControllerCompat.isAppearanceLightNavigationBars = colorRef.luminance() > 0.5f
-        window.statusBarColor = Color.Transparent.toArgb()
+        window.navigationBarColor = Color.Transparent.toArgb()
         if (Build.VERSION.SDK_INT >= 29) {
             window.isNavigationBarContrastEnforced = contrastEnforced
         }

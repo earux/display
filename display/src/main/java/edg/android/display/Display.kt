@@ -1,6 +1,7 @@
 package edg.android.display
 
 import androidx.compose.runtime.Stable
+import androidx.compose.ui.unit.Dp
 
 /**
  * Interface representing a display with various properties and methods
@@ -8,6 +9,11 @@ import androidx.compose.runtime.Stable
  */
 @Stable
 interface Display {
+    val width: Dp
+
+    val height: Dp
+
+    val density: Float
 
     /**
      * The status bar of the display.
@@ -68,6 +74,7 @@ interface Display {
      */
     enum class Type {
         COMPACT,
+
         /**
          * Represents a medium-sized display type.
          */

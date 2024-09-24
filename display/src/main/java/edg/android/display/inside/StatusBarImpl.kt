@@ -37,6 +37,7 @@ class StatusBarImpl(
         set(value) {
             windowInsetsControllerCompat.isAppearanceLightStatusBars = value
             _darkIcons = value
+            //val i = windowInsetsCompat?.getInsets(WindowInsetsCompat.Type.systemBars())
         }
 
     override fun show() {

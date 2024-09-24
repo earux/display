@@ -3,12 +3,15 @@ package edg.android.display.inside
 import android.app.Activity
 import android.content.pm.ActivityInfo
 import android.content.res.Configuration
+import android.content.res.Resources
 import android.os.Build
 import android.view.View
 import android.view.Window
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
@@ -34,6 +37,23 @@ class DisplayImpl(
     )
 
     private val windowClass = WindowClass()
+
+    override val width: Dp
+        get() {
+            val density = Resources.getSystem().displayMetrics.density
+            return (window.decorView.width / density).dp
+        }
+
+    override val height: Dp
+        get() {
+            val density = Resources.getSystem().displayMetrics.density
+            return (window.decorView.height / density).dp
+        }
+
+    override val density: Float
+        get() {
+            return Resources.getSystem().displayMetrics.density
+        }
 
     override val statusBar: StatusBar = StatusBarImpl(
         window,
@@ -97,7 +117,7 @@ class DisplayImpl(
 
     init {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
-            //@Suppress("DEPRECATION")
+            @Suppress("DEPRECATION")
             window.decorView.apply {
                 systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN or
                         View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
